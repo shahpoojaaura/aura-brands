@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>What If: Hermès</title>
+<style>
+@font-face{font-family:"Playfair Display";src:url(assets/PlayfairDisplay.woff2) format("woff2");font-weight:400 900;font-style:normal}
+@font-face{font-family:"Playfair Display";src:url(assets/PlayfairDisplay-Italic.woff2) format("woff2");font-weight:400 900;font-style:italic}
+@font-face{font-family:"Montserrat";src:url(assets/Montserrat.woff2) format("woff2");font-weight:100 900}
+:root{
+  --ink:#332C0F;--deep:#15120A;--pearl:#F7F2E0;--bisque:#EBCDB7;
+  --salmon:#BF897F;--salmon-f:#D4A79D;--salmon-l:#874A41;
+  --disp:"Playfair Display",Georgia,serif;--body:"Montserrat",Arial,sans-serif;
+  --pad:88px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#000;font-family:var(--body);color:var(--pearl);-webkit-font-smoothing:antialiased}
+.s{position:relative;width:1080px;height:1350px;overflow:hidden;background:var(--deep);margin:0 auto 40px}
+.s.light{background:var(--pearl);color:var(--ink)}
+.in{position:absolute;inset:var(--pad);display:flex;flex-direction:column}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:20px;letter-spacing:.24em;text-transform:uppercase;font-weight:500;opacity:.78}
+.top b{font-weight:500;color:var(--salmon-f)}
+.light .top b{color:var(--salmon-l)}
+.foot{position:absolute;left:var(--pad);right:var(--pad);bottom:56px;display:flex;justify-content:space-between;align-items:flex-end;font-size:18px;letter-spacing:.2em;text-transform:uppercase;opacity:.7}
+.mark{width:84px;height:auto;display:block}
+.light .mark{filter:brightness(0) saturate(100%) invert(15%) sepia(30%) saturate(900%) hue-rotate(15deg)}
+.k{font-size:22px;letter-spacing:.26em;text-transform:uppercase;font-weight:600;color:var(--salmon-f);margin-bottom:34px}
+.light .k{color:var(--salmon-l)}
+h1,h2,.lead,.owns span{text-wrap:balance}
+h1,h2{font-family:var(--disp);font-weight:400;line-height:1.04;letter-spacing:-.01em}
+h1{font-size:104px}
+h2{font-size:84px;margin-bottom:44px}
+em{font-style:italic;color:var(--salmon-f)}
+.light em{color:var(--salmon-l)}
+p{font-size:31px;line-height:1.5;font-weight:400;max-width:860px}
+p+p{margin-top:26px}
+.lead{font-family:var(--disp);font-style:italic;font-size:44px;line-height:1.3;color:var(--bisque)}
+.light .lead{color:var(--salmon-l)}
+.rule{width:88px;height:2px;background:var(--salmon);margin:44px 0}
+.disc{font-size:17px;letter-spacing:.04em;line-height:1.5;opacity:.72;text-transform:none}
+
+/* full-bleed photograph */
+.ph{position:absolute;inset:0;background-size:cover;background-position:center}
+.scrim{position:absolute;inset:0}
+
+/* photo top, copy below */
+.split .ph{bottom:auto;height:640px}
+.split .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(21,18,10,.35) 0%,rgba(21,18,10,0) 30%,rgba(21,18,10,0) 62%,var(--deep) 100%)}
+.split .in{top:600px}
+.split .top{position:absolute;top:var(--pad);left:var(--pad);right:var(--pad);z-index:2}
+.split h2{font-size:76px;margin-bottom:32px}
+.split p{font-size:29px}
+.note{margin-top:34px;padding-top:28px;border-top:1px solid rgba(191,137,127,.5);font-family:var(--disp);font-style:italic;font-size:34px;line-height:1.35;color:var(--bisque)}
+
+/* codes row */
+.codes{display:flex;gap:0;margin-top:auto;border-top:1px solid rgba(247,242,224,.25)}
+.codes div{flex:1;padding:30px 0 0}
+.codes div+div{padding-left:28px;border-left:1px solid rgba(247,242,224,.25)}
+.codes span{display:block;font-size:18px;letter-spacing:.24em;text-transform:uppercase;opacity:.65;margin-bottom:12px}
+.codes strong{font-family:var(--disp);font-weight:400;font-size:44px}
+
+/* materials grid */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:8px;border-top:1px solid rgba(51,44,15,.25)}
+.grid div{padding:34px 30px 34px 0;border-bottom:1px solid rgba(51,44,15,.25)}
+.grid div:nth-child(2n){padding-left:34px;padding-right:0;border-left:1px solid rgba(51,44,15,.25)}
+.grid span{display:block;font-size:18px;letter-spacing:.24em;text-transform:uppercase;font-weight:600;color:var(--salmon-l);margin-bottom:12px}
+.grid strong{display:block;font-family:var(--disp);font-weight:400;font-size:46px;line-height:1.1;margin-bottom:12px}
+.grid p{font-size:24px;line-height:1.45}
+
+/* steps */
+.steps{list-style:none;margin-top:4px}
+.steps li{display:grid;grid-template-columns:76px 1fr;align-items:baseline;padding:22px 0;border-top:1px solid rgba(247,242,224,.2)}
+.steps li:last-child{border-bottom:1px solid rgba(247,242,224,.2)}
+.steps i{font-family:var(--disp);font-style:italic;font-size:34px;color:var(--salmon-f)}
+.steps b{font-family:var(--disp);font-weight:400;font-size:40px;display:block;margin-bottom:4px}
+.steps small{font-size:25px;line-height:1.45;opacity:.85;display:block}
+
+/* owns */
+.owns{list-style:none}
+.owns li{display:grid;grid-template-columns:76px 1fr;padding:30px 0;border-top:1px solid rgba(51,44,15,.22);font-family:var(--disp);font-size:46px;line-height:1.2}
+.owns li:last-child{border-bottom:1px solid rgba(51,44,15,.22)}
+.owns i{font-size:34px;color:var(--salmon-l);padding-top:6px}
+
+/* stitch */
+.stitch{display:block;margin:10px 0 50px}
+.name{font-family:var(--disp);font-size:92px;line-height:1;margin:0 0 18px}
+.meta{font-size:20px;letter-spacing:.18em;text-transform:uppercase;opacity:.75}
+</style>
+</head>
+<body>
+
+<!-- 1 · cover -->
+<section class="s" id="s1">
+  <div class="ph" style="background-image:url(assets/salt-room.jpg)"></div>
+  <div class="scrim" style="background:linear-gradient(180deg,rgba(21,18,10,.72) 0%,rgba(21,18,10,.25) 34%,rgba(21,18,10,.55) 58%,rgba(21,18,10,.96) 84%)"></div>
+  <div class="in">
+    <div class="top"><span>A thought experiment</span><b>No. 01</b></div>
+    <div style="margin-top:auto;margin-bottom:150px">
+      <h1>What if <em>Hermès</em> asked us to build a wellness room in India?</h1>
+      <p style="margin-top:36px;font-size:33px;color:var(--bisque)">Here is how we would go about it, room by room.</p>
+    </div>
+  </div>
+  <div class="foot">
+    <div><img class="mark" src="assets/ah_mark_3x.png" alt="The Aura House"></div>
+    <div style="text-align:right">
+      <div style="margin-bottom:14px">Swipe &nbsp;&rarr;</div>
+      <div class="disc">A speculative concept. Not commissioned by or affiliated with Hermès.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 2 · the brief -->
+<section class="s" id="s2">
+  <div class="in">
+    <div class="top"><span>The brief</span><b>02 / 10</b></div>
+    <div style="margin-top:110px">
+      <div class="k">Where we would start</div>
+      <h2>Not a pop-up. <em>Not a logo</em> on a wall.</h2>
+      <p>The house began in Paris in 1837, making harnesses for horses. Almost two centuries on, one artisan still makes a bag from start to finish, by hand.</p>
+      <p class="lead" style="margin-top:44px">So the room cannot be fast. It has to move at the speed of a hand.</p>
+    </div>
+    <div class="codes">
+      <div><span>Code one</span><strong>The horse</strong></div>
+      <div><span>Code two</span><strong>The hand</strong></div>
+      <div><span>Code three</span><strong>Time</strong></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 · the idea -->
+<section class="s light" id="s3">
+  <div class="in">
+    <div class="top"><span>The idea</span><b>03 / 10</b></div>
+    <div style="margin-top:110px">
+      <div class="k">Built on one stitch</div>
+      <p style="font-size:33px">The saddle stitch: two needles, one thread, pulled tight from both sides. Slower than a machine, and it outlasts one.</p>
+      <svg class="stitch" width="904" height="70" viewBox="0 0 904 70" aria-hidden="true">
+        <line x1="0" y1="35" x2="904" y2="35" stroke="#BF897F" stroke-width="1.5" stroke-dasharray="2 10" opacity=".7"/>
+        <g stroke="#874A41" stroke-width="5" stroke-linecap="round">
+          <line x1="14" y1="50" x2="54" y2="20"/><line x1="98" y1="50" x2="138" y2="20"/><line x1="182" y1="50" x2="222" y2="20"/><line x1="266" y1="50" x2="306" y2="20"/><line x1="350" y1="50" x2="390" y2="20"/><line x1="434" y1="50" x2="474" y2="20"/><line x1="518" y1="50" x2="558" y2="20"/><line x1="602" y1="50" x2="642" y2="20"/><line x1="686" y1="50" x2="726" y2="20"/><line x1="770" y1="50" x2="810" y2="20"/><line x1="854" y1="50" x2="894" y2="20"/>
+        </g>
+      </svg>
+      <p>We would build the whole evening on that rhythm. In, and out. Breath, and heat. Two sides of one thread.</p>
+    </div>
+    <div style="margin-top:auto">
+      <div class="rule" style="margin-top:0"></div>
+      <div class="name">The <em>Saddle Stitch</em></div>
+      <div class="meta">A 90-minute ritual &middot; Three rooms &middot; 24 guests an evening</div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 · room one -->
+<section class="s split" id="s4">
+  <div class="ph" style="background-image:url(assets/salt-room.jpg);background-position:center 40%"></div>
+  <div class="top"><span>Room one &middot; 30 min</span><b>04 / 10</b></div>
+  <div class="in">
+    <div class="k">The Salt Room</div>
+    <h2>Breathe, in a room <em>of salt</em>.</h2>
+    <p>Walls of rock salt, lit from behind. A floor of salt from the Rann of Kutch, raked by hand between sessions into the pattern of a printed scarf. Guided breathwork, lying down, in near silence.</p>
+    <div class="note">The silk is not on display. It is folded under each guest&rsquo;s head.</div>
+  </div>
+</section>
+
+<!-- 5 · room two -->
+<section class="s split" id="s5">
+  <div class="ph" style="background-image:url(assets/round-room.jpg);background-position:center 30%"></div>
+  <div class="top"><span>Room two &middot; 25 min</span><b>05 / 10</b></div>
+  <div class="in">
+    <div class="k">The Manège</div>
+    <h2>Heat, <em>in the round</em>.</h2>
+    <p>A manège is the round arena where a horse is schooled. So the heat room is round too: tiered cedar, no front row, everyone facing the centre.</p>
+    <p>Every eight minutes, steam is poured over vetiver, the Indian khus root, and the whole room breathes out together.</p>
+  </div>
+</section>
+
+<!-- 6 · room three -->
+<section class="s" id="s6">
+  <div class="ph" style="background-image:url(assets/round-room.jpg);background-position:center 8%;filter:blur(2px) saturate(.9);transform:scale(1.04)"></div>
+  <div class="scrim" style="background:linear-gradient(180deg,rgba(21,18,10,.82) 0%,rgba(21,18,10,.9) 45%,rgba(21,18,10,.98) 100%)"></div>
+  <div class="in">
+    <div class="top"><span>Room three &middot; 35 min</span><b>06 / 10</b></div>
+    <div style="margin-top:110px">
+      <div class="k">The Unhurried Hour</div>
+      <h2>Rest, and <em>nothing</em> to buy.</h2>
+      <p>A low, quiet room. Guests are wrapped in silk after the heat, handed cold tulsi and a slow cup of kahwa, and left alone. No counter, no catalogue, no one selling.</p>
+    </div>
+    <div style="margin-top:auto">
+      <div class="rule" style="margin-top:0"></div>
+      <p class="lead" style="max-width:900px">The product is in every room and sold in none of them.</p>
+      <p style="font-size:24px;opacity:.75;margin-top:22px">The house already proved this abroad, with a gym where the scarves were the equipment.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 7 · why India -->
+<section class="s light" id="s7">
+  <div class="in">
+    <div class="top"><span>Why India</span><b>07 / 10</b></div>
+    <div style="margin-top:96px">
+      <div class="k">Rooted, not imported</div>
+      <h2 style="margin-bottom:40px">Paris codes. <em>Indian</em> materials.</h2>
+    </div>
+    <div class="grid">
+      <div><span>The floor</span><strong>Salt</strong><p>From the Rann of Kutch, Gujarat.</p></div>
+      <div><span>The benches</span><strong>Cedar</strong><p>Deodar, the cedar of the Himalaya.</p></div>
+      <div><span>The steam</span><strong>Vetiver</strong><p>Khus, used to cool rooms across north India.</p></div>
+      <div><span>The horse</span><strong>Marwari</strong><p>The curled-ear horse of Rajasthan, in the film.</p></div>
+    </div>
+    <p class="lead" style="margin-top:auto;font-size:40px">A Paris house should feel at home here, not on a visit.</p>
+  </div>
+</section>
+
+<!-- 8 · how we'd go forward -->
+<section class="s" id="s8">
+  <div class="in">
+    <div class="top"><span>How we would go forward</span><b>08 / 10</b></div>
+    <div style="margin-top:80px">
+      <h2 style="font-size:76px;margin-bottom:36px">From first call to <em>first evening</em>.</h2>
+    </div>
+    <ol class="steps">
+      <li><i>01</i><div><b>Listen</b><small>Time inside the house&rsquo;s codes, with its team in India and in Paris.</small></div></li>
+      <li><i>02</i><div><b>Translate</b><small>Materials, scent, sound and pace, sourced here.</small></div></li>
+      <li><i>03</i><div><b>Build</b><small>One room, designed and run by one team, end to end.</small></div></li>
+      <li><i>04</i><div><b>Invite</b><small>24 guests an evening. The house writes the list.</small></div></li>
+      <li><i>05</i><div><b>Film</b><small>Stills and film shot on the day, for the house&rsquo;s channels.</small></div></li>
+      <li><i>06</i><div><b>Return</b><small>A monsoon edition in Mumbai. A winter one in Delhi.</small></div></li>
+    </ol>
+  </div>
+</section>
+
+<!-- 9 · what the house owns -->
+<section class="s light" id="s9">
+  <div class="in">
+    <div class="top"><span>What the house keeps</span><b>09 / 10</b></div>
+    <div style="margin-top:110px">
+      <div class="k">The point of all of it</div>
+      <h2>Not an event. <em>A format.</em></h2>
+    </div>
+    <ul class="owns">
+      <li><i>i.</i><span>A ritual with a name, ready to run again.</span></li>
+      <li><i>ii.</i><span>A guest list it wrote, and keeps.</span></li>
+      <li><i>iii.</i><span>A film of the evening, for its own channels.</span></li>
+    </ul>
+    <p class="lead" style="margin-top:auto;font-size:46px">The room closes at ten. The relationship doesn&rsquo;t.</p>
+  </div>
+</section>
+
+<!-- 10 · close -->
+<section class="s" id="s10">
+  <div class="ph" style="background-image:url(assets/salt-room.jpg);background-position:center 70%"></div>
+  <div class="scrim" style="background:linear-gradient(180deg,rgba(21,18,10,.93) 0%,rgba(21,18,10,.78) 45%,rgba(21,18,10,.93) 100%)"></div>
+  <div class="in" style="align-items:center;text-align:center">
+    <div class="top" style="width:100%"><span>The Aura House</span><b>10 / 10</b></div>
+    <div style="margin:auto 0">
+      <img src="assets/ah_mark_3x.png" alt="The Aura House" style="width:150px;margin:0 auto 64px;display:block">
+      <h1 style="font-size:88px">This one is imagined. <em>Yours</em> doesn&rsquo;t have to be.</h1>
+      <p style="margin:44px auto 0;color:var(--bisque)">We design and run owned wellness experiences for luxury brands in India.</p>
+      <p style="margin:56px auto 0;font-size:24px;letter-spacing:.24em;text-transform:uppercase;font-weight:600;color:var(--salmon-f)">brands.theaurahouse.co</p>
+    </div>
+    <p class="disc" style="max-width:none">A speculative concept by The Aura House. Not commissioned by, affiliated with or endorsed by Hermès. Images are reference only.</p>
+  </div>
+</section>
+
+</body>
+</html>
