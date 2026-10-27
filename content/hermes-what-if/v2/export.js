@@ -1,5 +1,5 @@
 // Exports slides.html (one long strip) as one page per slide:
-//   export/carousel.pdf      10 pages, 1080x1350, real text (sharp at any zoom)
+//   export/carousel.pdf      one 1080x1350 page per slide, real text (sharp at any zoom)
 //   export/instagram/NN.jpg  2160x2700 stills for Instagram (via finish.py)
 // Run: node export.js
 const {chromium} = require('playwright');
@@ -7,7 +7,7 @@ const path = require('path');
 const fs = require('fs');
 const {execFileSync} = require('child_process');
 
-const N = 10, W = 1080, H = 1350;
+const W = 1080, H = 1350;
 const out = path.join(__dirname, 'export');
 
 (async () => {
@@ -17,6 +17,7 @@ const out = path.join(__dirname, 'export');
   await page.goto('file://' + path.join(__dirname, 'slides.html'));
   await page.evaluate(() => document.fonts.ready);
   await page.waitForTimeout(800);
+  const N = await page.evaluate(W => Math.round(document.getElementById('pano').offsetWidth / W), W);
 
   // cut the strip into pages; each page keeps only what reaches into it. No margin for shadows: an element
   // parked just past a page edge made Chrome shrink every page of a multi-page print to fit it

@@ -5,7 +5,8 @@ import pypdf
 from PIL import Image
 
 out = sys.argv[1]
-os.makedirs(os.path.join(out, 'instagram'), exist_ok=True)
+shutil.rmtree(os.path.join(out, 'instagram'), ignore_errors=True)  # no stale slides when the deck gets shorter
+os.makedirs(os.path.join(out, 'instagram'))
 for f in sorted(glob.glob(os.path.join(out, '.png', '*.png'))):
     name = os.path.basename(f)[:-4] + '.jpg'
     Image.open(f).convert('RGB').save(os.path.join(out, 'instagram', name), quality=95, subsampling=0)
