@@ -1,7 +1,8 @@
 # What if Hermès called us? Captions (v2, scrapbook layout)
 
-Slides: `export/01.png` to `export/10.png` (1080 × 1350). Post them in order. The objects that cross slides 2–3, 4–5 and 8–9 only line up in sequence.
-LinkedIn: upload `export/carousel-linkedin.pdf` as a document post.
+Instagram: `export/instagram/01.jpg` to `10.jpg` (2160 × 2700; Instagram scales them to 1080 × 1350). Post them in order: the print on slides 2–3, the notebook on 4–5 and the thread on 8–9 only line up in sequence.
+LinkedIn: upload `export/carousel.pdf` as a document post (one slide per page, real text, sharp at any zoom).
+To re-export after an edit to `slides.html`: `node export.js`.
 
 ---
 
